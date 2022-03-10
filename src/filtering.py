@@ -1,14 +1,19 @@
 import pandas as pd
 import csv
+import numpy
 
-def createCSV(filepath, list):  # creates CSVs from list
-    with open(filepath, 'w', newline='\n', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerows(list)
+
+def filter_csv(infile_path: str, outfile_path: str):
+    df = pd.read_csv(infile_path) 
+    cols = df.columns
+    lst = [df.loc[i] for i in range(len(df)) if (df.loc[i, "Indicator Code"][:2] in ("NY", "SE", "SD"))]
+    arr = numpy.asarray(lst)
+    df = pd.DataFrame(arr)
+    df.columns = cols
+    df.to_csv(outfile_path)  
+   
 
 if __name__ == "__main__":
-    lst = []
-    
-    df = pd.read_csv("Desktop//countries_data.csv")
-    lst = [df.loc[i] for i in range(len(df)) if (df.loc[i, "Indicator Code"][:2] in ("NY", "SE", "SD"))]
-    createCSV("Desktop//test.csv", lst)
+    in_path = r"Desktop\countries_data.csv"
+    out_path = r'Desktop\filtered_csv2.csv'
+    filter_csv(in_path, out_path)
