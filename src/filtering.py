@@ -2,8 +2,8 @@ import pandas as pd
 import csv
 import numpy
 
-global in_path = ''
-global out_path = ''
+global in_path = ''         # fill
+global out_path = ''        # fill
 
 def filter_csv(infile_path: str, outfile_path: str):
     df = pd.read_csv(infile_path) 
