@@ -2,6 +2,8 @@ import pandas as pd
 import csv
 import numpy
 
+global in_path = ''
+global out_path = ''
 
 def filter_csv(infile_path: str, outfile_path: str):
     df = pd.read_csv(infile_path) 
@@ -14,6 +16,4 @@ def filter_csv(infile_path: str, outfile_path: str):
    
 
 if __name__ == "__main__":
-    in_path = r"Desktop\countries_data.csv"
-    out_path = r'Desktop\filtered_csv2.csv'
     filter_csv(in_path, out_path)
