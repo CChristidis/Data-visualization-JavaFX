@@ -22,16 +22,16 @@ LOAD DATA LOCAL INFILE
 INTO TABLE 
   indicator
 CHARACTER SET 
-	latin1 
+   latin1 
 FIELDS OPTIONALLY ENCLOSED BY 
    '"' 
 TERMINATED BY 
-  ','
+   ','
 LINES TERMINATED BY 
-  '\n' 
+   '\n' 
 IGNORE 
-  1 
+    1 
 LINES 
-  (id, Name, Code);
+   (id, Name, Code);
   
   
