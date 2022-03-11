@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy
 
-in_file = ''                    # countries_data.csv
-out_file = ''                   # year_value.csv
+in_file = ''                    #
+out_file = ''                   #
 
 
 def filter_indicators(in_file: str):
@@ -56,5 +56,5 @@ if __name__ == "__main__":
     df = add_countryid_indicatorid(df)
     df = unpivot_df(df)
 
-    df.to_csv(out_file)
+    df.to_csv(out_file, index=False)  # index=False removes index column.
 
