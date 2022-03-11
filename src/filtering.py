@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy
 
-in_file = ''                    #
-out_file = ''                   #
+in_file = ''                    # countries_data.csv
+out_file = ''                   # year_value.csv
 
 
 def filter_indicators(in_file: str):
