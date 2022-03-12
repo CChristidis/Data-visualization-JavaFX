@@ -5,13 +5,19 @@ in_file = ''                    # countries_data.csv
 out_file = ''                   # year_value.csv
 
 
+def get_rows_of_wanted_indicators(df, ind_tuple):
+    filtered_list = [df.loc[i] for i in range(len(df)) if (df.loc[i, "Indicator Code"][:2] in ind_tuple)]
+    return filtered_list
+
+
 def filter_indicators(in_file: str):
     df = pd.read_csv(in_file)
     cols = df.columns
 
     """ Filter all unwanted rows."""
-    indicator_filtering_list = [df.loc[i] for i in range(len(df)) if (df.loc[i, "Indicator Code"][:2] in ("NY", "SE", "SD"))]
-    arr = numpy.asarray(indicator_filtering_list)
+    filtered_list = get_rows_of_wanted_indicators(df, ("NY", "SE", "SD"))
+
+    arr = numpy.asarray(filtered_list)
     df = pd.DataFrame(arr)
     df.columns = cols
 
