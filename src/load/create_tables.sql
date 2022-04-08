@@ -6,14 +6,14 @@ CREATE TABLE country(
   name VARCHAR(255),
   code VARCHAR(255),
   PRIMARY KEY(id)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE indicator(
   id INT,
   name VARCHAR(255),
   code VARCHAR(255),
   PRIMARY KEY(id)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE indicates(
   id_country INT,
@@ -21,8 +21,4 @@ CREATE TABLE indicates(
   year INT,
   value FLOAT,
   PRIMARY KEY(id_country, id_ind, year)
-);
- 
-  
-
-  
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
