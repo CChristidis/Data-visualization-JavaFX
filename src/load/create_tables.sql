@@ -20,5 +20,7 @@ CREATE TABLE indicates(
   id_ind INT, 
   year INT,
   value FLOAT,
-  PRIMARY KEY(id_country, id_ind, year)
+  PRIMARY KEY(id_country, id_ind, year),
+  CONSTRAINT `country_id` FOREIGN KEY (id_country) REFERENCES country (id),
+  CONSTRAINT `ind_id` FOREIGN KEY (id_ind) REFERENCES indicator (id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
