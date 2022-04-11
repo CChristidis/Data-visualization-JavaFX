@@ -1,6 +1,6 @@
 -- Load country csv
 LOAD DATA LOCAL INFILE 
-  'C:\Users\Christos\Desktop\MYE30_csv'
+  'C:/Users/Christos/Desktop/MYE30_csv/country.csv'
 INTO TABLE 
   country
 CHARACTER SET 
@@ -18,7 +18,7 @@ LINES
 
 -- Load indicator csv
 LOAD DATA LOCAL INFILE 
-  'Desktop\\MYE30_csv\\indicator.csv'
+  'C:/Users/Christos/Desktop/MYE30_csv/indicator.csv'
 INTO TABLE 
   indicator
 CHARACTER SET 
@@ -36,7 +36,7 @@ LINES
    
 -- load indicates csv
 	LOAD DATA LOCAL INFILE 
-		'Desktop\\MYE30_csv\\indicates.csv'
+		'C:/Users/Christos/Desktop/MYE30_csv/indicates.csv'
 	INTO TABLE 
 		indicates
 	CHARACTER SET 
