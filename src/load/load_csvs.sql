@@ -1,6 +1,6 @@
 -- Load country csv
 LOAD DATA LOCAL INFILE 
-  '\\Desktop\\MYE30_csv\\country.csv'
+  'C:\Users\Christos\Desktop\MYE30_csv'
 INTO TABLE 
   country
 CHARACTER SET 
