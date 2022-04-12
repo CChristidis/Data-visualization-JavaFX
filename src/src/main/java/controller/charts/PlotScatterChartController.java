@@ -1,15 +1,17 @@
 package main.java.controller.charts;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.List;
+import java.util.Map;
 
-import javafx.fxml.Initializable;
 
-public class PlotScatterChartController extends PlotChartController implements Initializable {
 
+public class PlotScatterChartController extends PlotChartController {
+	private static Map<List<String>, Long> valueFromIndicatorYearCountryMap;
+	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void plotChart() {
+		// TODO Auto-generated method stub
 		
 	}
-
+	
 }
