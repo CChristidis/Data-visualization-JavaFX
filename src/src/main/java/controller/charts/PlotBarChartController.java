@@ -25,7 +25,7 @@ public class PlotBarChartController extends PlotChartController {
 	private static CategoryAxis xAxis;
 	private static NumberAxis yAxis;
 	private static Stage stage;
-	private static BarChart<Number, Number> barChart;
+	private static BarChart<String, Number> barChart;
 	
 	
 	public PlotBarChartController() {
@@ -66,11 +66,11 @@ public class PlotBarChartController extends PlotChartController {
         yAxis.setLabel("Value");
         
         //creating the chart
-        barChart =  new BarChart(xAxis, yAxis);
+        barChart =  new BarChart<String, Number>(xAxis, yAxis);
         
         // lineChart.setTitle();
         PreprocessBarchartComponents preprocessing = new PreprocessBarchartComponents(valueFromIndicatorYearCountryMap); 
-        preprocessing.addSeriesToBarchartLegend(barChart);
+        preprocessing.addSeriesToBarchartLegend(startingYear, endingYear, barChart);
     
         Scene scene  = new Scene(barChart, 800, 600);
         stage.setScene(scene);

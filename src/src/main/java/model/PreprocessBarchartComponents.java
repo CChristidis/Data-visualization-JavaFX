@@ -3,6 +3,7 @@ package main.java.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class PreprocessBarchartComponents {
 	
 	
 	// TODO: move it to main.java.model 
-		public void addSeriesToBarchartLegend(BarChart barChart) {
+		public void addSeriesToBarchartLegend(int startingYear, int endingYear, BarChart barChart) {
 			List<List<String>> country_indicatorPairList = getCountry_IndicatorPairs(filterListFromYears());
 	        System.gc();
 	        
@@ -31,33 +32,42 @@ public class PreprocessBarchartComponents {
 	        
 	        List<String> country_indicatorSeries = new ArrayList<String>();
 	        
-	        
-	    
 	        	
 	        for (List<String> pair: country_indicatorPairList) {
 	        	
 	        	XYChart.Series series = new XYChart.Series();
+	        	List<List<String>> seriesPairs = new ArrayList<List<String>>();
+	        	
 	        	series.setName(pair.get(0) + " " + pair.get(1));
 	        	
 	        	for (Map.Entry<List<String>, Long> entry : valueFromIndicatorYearCountryMap.entrySet()) {
+	        		
 	        		List<String> keyList = entry.getKey();
-	        	    
-	        		for (Integer year: yearList) {
-	        			if (!keyList.get(0).equals(pair.get(0)) || !keyList.get(1).equals(pair.get(1)) || 
-	        					year != Integer.parseInt(keyList.get(2)))
-	        				continue;
+	        		
+	        		if ((Integer.parseInt(keyList.get(2)) < startingYear) || (Integer.parseInt(keyList.get(2)) > endingYear))
+	        			continue;
+	        	
+	        	
+	        		if (!keyList.get(0).equals(pair.get(0)) || !keyList.get(1).equals(pair.get(1)))
+	        			continue;
 	        			
 	        			
-	        			long value = entry.getValue();
+	        		long value = entry.getValue();
 	        	    
-	        			// int year = yearList.get(yearList.indexOf(Integer.parseInt(keyList.get(2))));
+	        		// int year = yearList.get(yearList.indexOf(Integer.parseInt(keyList.get(2))));
 	        			
-	        	    
-	        			series.getData().add(new XYChart.Data(keyList.get(2), value));
-	        		}
+	        		seriesPairs.add(Arrays.asList(keyList.get(2), Long.toString(value)));
+	        		
 	        	}
+	        	
+	        	seriesPairs.sort(Comparator.comparing(l -> Integer.parseInt(l.get(0))));
+	        	
+	        	for (List<String> sortedSeries: seriesPairs)
+	        		series.getData().add(new XYChart.Data(sortedSeries.get(0), Long.parseLong(sortedSeries.get(1))));
+	        	
 	        	barChart.getData().add(series);
-	        }		
+	        	
+	        }	
 		}
 		
 		// TODO: move it to main.java.model 

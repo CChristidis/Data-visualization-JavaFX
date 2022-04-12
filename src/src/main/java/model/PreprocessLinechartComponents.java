@@ -21,7 +21,7 @@ public class PreprocessLinechartComponents {
 	
 	
 	// TODO: move it to main.java.model 
-		public void addSeriesToLinechartLegend(LineChart lineChart ) {
+		public void addSeriesToLinechartLegend(LineChart lineChart) {
 			List<List<String>> country_indicatorPairList = getCountry_IndicatorPairs(filterListFromYears());
 	        System.gc();
 	        
