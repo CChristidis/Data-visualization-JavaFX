@@ -43,7 +43,7 @@ public class PlotBarChartController extends PlotChartController {
     @Override
      public void plotChart() {
     	this.stage = new Stage();
-		stage.setTitle("Linechart");
+		stage.setTitle("Bar Chart");
 		
 		
 		

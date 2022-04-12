@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import main.java.controller.charts.PlotBarChartController;
+import main.java.controller.charts.PlotScatterChartController;
 import main.java.controller.charts.PlotTimelineChartController;
 import main.java.dao.Connector;
 import main.java.dao.CountryDAO;
@@ -119,7 +120,7 @@ public class Controller implements Initializable {
 		mapForChart = obj2.readValueFromCountryAndIndicator(cids, iids, years);
 		
 		
-		PlotBarChartController obj = new PlotBarChartController(mapForChart, Integer.parseInt(this.yearformat), 
+		PlotTimelineChartController obj = new PlotTimelineChartController(mapForChart, Integer.parseInt(this.yearformat), 
 				Integer.parseInt(this.startingyear), Integer.parseInt(this.endingyear));
 		obj.plotChart();
 		System.gc();

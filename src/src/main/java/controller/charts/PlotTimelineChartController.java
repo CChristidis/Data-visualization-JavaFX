@@ -46,7 +46,7 @@ public class PlotTimelineChartController extends PlotChartController {
 	@Override
 	public void plotChart() {
 		this.stage = new Stage();
-		stage.setTitle("Linechart");
+		stage.setTitle("Timeline");
 		
 		
 		long maxIndicatorValue = Collections.max(valueFromIndicatorYearCountryMap.values());
@@ -55,8 +55,8 @@ public class PlotTimelineChartController extends PlotChartController {
 
         //defining the axes
         xAxis = new NumberAxis(startingYear, endingYear, yearFormat);
-        yAxis = new NumberAxis(Collections.min(valueFromIndicatorYearCountryMap.values()), 
-        		Collections.max(valueFromIndicatorYearCountryMap.values()) + 2 * spacing, spacing);
+        yAxis = new NumberAxis(Collections.min(valueFromIndicatorYearCountryMap.values()) - 4 * spacing, 
+        		Collections.max(valueFromIndicatorYearCountryMap.values()) + 4 * spacing, spacing);
         
         xAxis.setLabel("Year");
         yAxis.setLabel("Value");
