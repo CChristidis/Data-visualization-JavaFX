@@ -1,8 +1,0 @@
-.combo-box .cell:hover {
-    -fx-text-fill: black;
-}
-
-.combo-box .cell:picked {
-    -fx-text-fill: red;
-
-}
