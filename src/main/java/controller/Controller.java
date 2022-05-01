@@ -51,28 +51,19 @@ public class Controller implements Initializable {
 	private ComboBox yearformatComb;
 	
     @FXML
-    private Button Submit_butt;
+    private Button submitButton;
    
 
 	@FXML
 	void Select1(ActionEvent event) {
 		String s = countryComb.getSelectionModel().getSelectedItem().toString();
-		// countryComb.setPromptText("Hey");
-		//countryComb.getSelectionModel().getSelectedIndex();
-		
 		selected_countries.add(s);
-		// conn.test(selected_countries);
 	}
 	
 	@FXML
 	void Select2(ActionEvent event) {
 		String s = indicatorComb.getSelectionModel().getSelectedItem().toString();
-		
-		// indicatorComb.getSelectionModel().getSelectedIndex();
-		
-		
 		selected_indicators.add(s);
-		// conn.test(selected_indicators);
 	}
 	
 	@FXML
@@ -95,14 +86,12 @@ public class Controller implements Initializable {
 	
 	
 	@FXML
-	void Submit(ActionEvent event) throws IOException {  // If submit button is pressed, goto this method.
+	void Submit(ActionEvent event) throws IOException {  
+		// actions that succeed after pressing the submit button.
 		closeWindow(event);
-		// Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLPlotTimelineChart.fxml"));
+		
 		Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLBarChart.fxml"));
 	
-
-		
-		
 		
 		// ----------------- Testing -----------------
 		
@@ -120,7 +109,7 @@ public class Controller implements Initializable {
 		mapForChart = obj2.readValueFromCountryAndIndicator(cids, iids, years);
 		
 		
-		PlotTimelineChartController obj = new PlotTimelineChartController(mapForChart, Integer.parseInt(this.yearformat), 
+		PlotScatterChartController obj = new PlotScatterChartController(mapForChart, Integer.parseInt(this.yearformat), 
 				Integer.parseInt(this.startingyear), Integer.parseInt(this.endingyear));
 		obj.plotChart();
 		System.gc();
@@ -137,32 +126,29 @@ public class Controller implements Initializable {
 	    stage.close();
 	}
 	
-	void passDataToDB(List<?> ... listOfLists) {
-		for(List<?> lst: listOfLists) {
-			for(Object el: lst)
-				System.out.println(el);
-		}
-	}
+	
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Names n = new Names();
+		Names names_object = new Names();
 		
-		ObservableList<String> list1 = FXCollections.observableArrayList(n.getCountries());
-		countryComb.setItems(list1);
+		ObservableList<String> countryListForCombo = FXCollections.observableArrayList(names_object.getCountries());
+		countryComb.setItems(countryListForCombo);
 
 		
-		n.getNY_indic().addAll(n.getSE_indic());
-		ObservableList<String> list2 = FXCollections.observableArrayList(n.getNY_indic());
-		indicatorComb.setItems(list2);
+		names_object.getNY_indic().addAll(names_object.getSE_indic());	// merge NY and SE indicator families' lists.
 		
-		ObservableList<String> list3 = FXCollections.observableArrayList(n.getYearSpan());
-		yearformatComb.setItems(list3);
+		ObservableList<String> indicatorListForCombo = FXCollections.observableArrayList(names_object.getNY_indic());
+		indicatorComb.setItems(indicatorListForCombo);
 		
-		ObservableList<String> list4 = FXCollections.observableArrayList(n.getYears());
-		startingyearComb.setItems(list4);
-		endingyearComb.setItems(list4);
+		ObservableList<String> yearFormatListForCombo = FXCollections.observableArrayList(names_object.getYearSpan());
+		yearformatComb.setItems(yearFormatListForCombo);
+		
+		ObservableList<String> yearsListForCombo = FXCollections.observableArrayList(names_object.getYears());
+		startingyearComb.setItems(yearsListForCombo);
+		endingyearComb.setItems(yearsListForCombo);
 		
 	}
 	
@@ -182,6 +168,7 @@ public class Controller implements Initializable {
 	
 	public void isAcceptableForm(int yearformat, int startingyear, int endingyear) {
 		if (endingyear - startingyear < 0) {
+			System.out.println("Aborting.");
 			System.out.println("Ending year must be greater than starting year.");
 			System.exit(-1);
 		}

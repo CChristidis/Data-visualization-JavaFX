@@ -13,10 +13,10 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		Parent root = FXMLLoader.load(getClass().getResource("..//view//sample.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("..//view//SelectionsWindow.fxml"));
 		scene = new Scene(root, 500, 400);
 		
-		primaryStage.setTitle("Database connection");
+		primaryStage.setTitle("Selections");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
