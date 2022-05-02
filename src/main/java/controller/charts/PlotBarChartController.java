@@ -77,6 +77,38 @@ public class PlotBarChartController extends PlotChartController {
         stage.show();
     }
 
+	public static Map<List<String>, Long> getValueFromIndicatorYearCountryMap() {
+		return valueFromIndicatorYearCountryMap;
+	}
+
+	public static int getYearFormat() {
+		return yearFormat;
+	}
+
+	public static int getStartingYear() {
+		return startingYear;
+	}
+
+	public static int getEndingYear() {
+		return endingYear;
+	}
+
+	public static void setValueFromIndicatorYearCountryMap(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
+		PlotBarChartController.valueFromIndicatorYearCountryMap = valueFromIndicatorYearCountryMap;
+	}
+
+	public static void setYearFormat(int yearFormat) {
+		PlotBarChartController.yearFormat = yearFormat;
+	}
+
+	public static void setStartingYear(int startingYear) {
+		PlotBarChartController.startingYear = startingYear;
+	}
+
+	public static void setEndingYear(int endingYear) {
+		PlotBarChartController.endingYear = endingYear;
+	}
+
 
 	
 }

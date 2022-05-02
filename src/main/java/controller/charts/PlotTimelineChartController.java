@@ -72,4 +72,40 @@ public class PlotTimelineChartController extends PlotChartController {
         stage.setScene(scene);
         stage.show();
 	}
+
+	public static Map<List<String>, Long> getValueFromIndicatorYearCountryMap() {
+		return valueFromIndicatorYearCountryMap;
+	}
+
+	public static int getYearFormat() {
+		return yearFormat;
+	}
+
+	public static int getStartingYear() {
+		return startingYear;
+	}
+
+	public static int getEndingYear() {
+		return endingYear;
+	}
+
+	public static void setValueFromIndicatorYearCountryMap(Map<List<String>, Long> valueFromIndicatorYearCountryMap) {
+		PlotTimelineChartController.valueFromIndicatorYearCountryMap = valueFromIndicatorYearCountryMap;
+	}
+
+	public static void setYearFormat(int yearFormat) {
+		PlotTimelineChartController.yearFormat = yearFormat;
+	}
+
+	public static void setStartingYear(int startingYear) {
+		PlotTimelineChartController.startingYear = startingYear;
+	}
+
+	public static void setEndingYear(int endingYear) {
+		PlotTimelineChartController.endingYear = endingYear;
+	}
+	
+	
+	
+	
 }

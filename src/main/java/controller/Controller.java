@@ -19,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import main.java.controller.charts.PlotBarChartController;
+import main.java.controller.charts.PlotChartController;
+import main.java.controller.charts.PlotChartControllerFactory;
 import main.java.controller.charts.PlotScatterChartController;
 import main.java.controller.charts.PlotTimelineChartController;
 import main.java.dao.Connector;
@@ -35,7 +37,7 @@ public class Controller implements Initializable {
 	List<String> selected_countries = new ArrayList<String>();
 	List<String> selected_indicators = new ArrayList<String>();
 	List<Integer> years = new ArrayList<Integer>();
-	String startingyear, endingyear, yearformat;
+	String startingyear, endingyear, yearformat, typeOfChart;
 	
 	Connector conn = new Connector();
 	
@@ -49,6 +51,8 @@ public class Controller implements Initializable {
 	private ComboBox endingyearComb;
 	@FXML
 	private ComboBox yearformatComb;
+	@FXML
+    private ComboBox charttypeComb;
 	
     @FXML
     private Button submitButton;
@@ -81,7 +85,10 @@ public class Controller implements Initializable {
 		endingyear = endingyearComb.getSelectionModel().getSelectedItem().toString();
 	}
 	
-	
+	@FXML
+    void Select6(ActionEvent event) {
+		typeOfChart = charttypeComb.getSelectionModel().getSelectedItem().toString();
+    }
 	
 	
 	
@@ -90,35 +97,51 @@ public class Controller implements Initializable {
 		// actions that succeed after pressing the submit button.
 		closeWindow(event);
 		
-		Parent root = FXMLLoader.load(getClass().getResource("..//view//FXMLBarChart.fxml"));
-	
 		
-		// ----------------- Testing -----------------
+		
+		// create a test for getResourcePath
+		Parent root = FXMLLoader.load(getClass().getResource(getResourcePath(typeOfChart)));
+	
 		
 		createYearsList();
 		
-		ValueFromCountryAndIndicatorDAO obj2 = ValueFromCountryAndIndicatorDAOFactory.getValueFromCountryAndIndicatorDAO("mysql");
-		CountryDAO obj3 = CountryDAOFactory.getCountryDAO("mysql");
-		IndicatorDAO obj4 = IndicatorDAOFactory.getIndicatorDAO("mysql");
+		ValueFromCountryAndIndicatorDAO indicates_table_accessor_obj = ValueFromCountryAndIndicatorDAOFactory.getValueFromCountryAndIndicatorDAO("mysql");
+		CountryDAO country_table_accessor_obj = CountryDAOFactory.getCountryDAO("mysql");
+		IndicatorDAO indicator_table_accessor_obj = IndicatorDAOFactory.getIndicatorDAO("mysql");
+		
+		
+		List<Integer> cids = country_table_accessor_obj.readCountryIdFromName(selected_countries);
+		List<Integer> iids = indicator_table_accessor_obj.readIndicatorIdFromName(selected_indicators);
 		
 		Map<List<String>, Long> mapForChart;
-		List<Integer> cids = obj3.readCountryIdFromName(selected_countries);
-		List<Integer> iids = obj4.readIndicatorIdFromName(selected_indicators);
+		mapForChart = indicates_table_accessor_obj.readValueFromCountryAndIndicator(cids, iids, years);
 		
 		
-		mapForChart = obj2.readValueFromCountryAndIndicator(cids, iids, years);
-		
-		
-		PlotScatterChartController obj = new PlotScatterChartController(mapForChart, Integer.parseInt(this.yearformat), 
+		PlotChartController plot_chart_obj = PlotChartControllerFactory.getPlotChartController(typeOfChart, mapForChart, Integer.parseInt(this.yearformat), 
 				Integer.parseInt(this.startingyear), Integer.parseInt(this.endingyear));
-		obj.plotChart();
+		plot_chart_obj.plotChart();
+		
 		System.gc();
 		
 		
-		// ----------------- Testing -----------------
-	
-		
 	}
+	
+	 String getResourcePath(String typeOfChart) {
+		 String fxmlResourcePath = "";
+		 
+		 if (typeOfChart.equalsIgnoreCase("bar")) 
+			 fxmlResourcePath =  "..//view//BarChart.fxml";
+		 
+		 else if (typeOfChart.equalsIgnoreCase("timeline")) 
+			 fxmlResourcePath =  "..//view//TimelineChart.fxml";
+		 
+		 else if (typeOfChart.equalsIgnoreCase("scatter")) 
+			 fxmlResourcePath =  "..//view//ScatterChart.fxml";
+		 
+		 return fxmlResourcePath;
+			  
+	 }
+	
 	
 	void closeWindow(ActionEvent event) {
 		Node source = (Node) event.getSource();
@@ -133,6 +156,7 @@ public class Controller implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		Names names_object = new Names();
+		
 		
 		ObservableList<String> countryListForCombo = FXCollections.observableArrayList(names_object.getCountries());
 		countryComb.setItems(countryListForCombo);
@@ -150,6 +174,8 @@ public class Controller implements Initializable {
 		startingyearComb.setItems(yearsListForCombo);
 		endingyearComb.setItems(yearsListForCombo);
 		
+		ObservableList<String> chartTypeListForCombo = FXCollections.observableArrayList(names_object.getChartTypes());
+		charttypeComb.setItems(chartTypeListForCombo);
 	}
 	
 	

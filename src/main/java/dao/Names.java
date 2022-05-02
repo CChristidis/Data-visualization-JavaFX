@@ -269,21 +269,33 @@ public class Names {
 			"1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011",
 			"2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"));
 	
+	private List<String> chartTypes = new ArrayList<String>(Arrays.asList("Timeline", "Bar", "Scatter"));
 	
 	
+	public List<String> getChartTypes() {
+		return chartTypes;
+	}
+	
+	public void setChartTypes(List<String> chartTypes) {
+		this.chartTypes = chartTypes;
+	}
 	
 	public List<String> getNY_indic() {
 		return NY_indic;
 	}
+	
 	public List<String> getSE_indic() {
 		return SE_indic;
 	}
+	
 	public List<String> getCountries() {
 		return countries;
 	}
+	
 	public List<String> getYearSpan() {
 		return yearSpan;
 	}
+	
 	public List<String> getYears() {
 		return years;
 	}
@@ -291,15 +303,19 @@ public class Names {
 	public void setYearSpan(List<String> yearSpan) {
 		this.yearSpan = yearSpan;
 	}
+	
 	public void setYears(List<String> years) {
 		this.years = years;
 	}
+	
 	public void setNY_indic(List<String> nY_indic) {
 		NY_indic = nY_indic;
 	}
+	
 	public void setSE_indic(List<String> sE_indic) {
 		SE_indic = sE_indic;
 	}
+	
 	public void setCountries(List<String> countries) {
 		this.countries = countries;
 	}

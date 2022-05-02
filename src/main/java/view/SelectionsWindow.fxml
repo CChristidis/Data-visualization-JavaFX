@@ -12,9 +12,10 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor></ComboBox>
       <ComboBox fx:id="indicatorComb" layoutX="193.0" layoutY="94.0" onAction="#Select2" prefWidth="150.0" promptText="Select indicators..." />
-      <Button fx:id="submitButton" layoutX="214.0" layoutY="331.0" mnemonicParsing="false" onAction="#Submit" prefHeight="25.0" prefWidth="108.0" text="Submit" />
+      <Button fx:id="submitButton" layoutX="214.0" layoutY="355.0" mnemonicParsing="false" onAction="#Submit" prefHeight="25.0" prefWidth="108.0" text="Submit" />
       <ComboBox fx:id="yearformatComb" layoutX="193.0" layoutY="158.0" onAction="#Select3" prefWidth="150.0" promptText="Select year format..." />
       <ComboBox fx:id="startingyearComb" layoutX="64.0" layoutY="229.0" onAction="#Select4" prefHeight="25.0" prefWidth="156.0" promptText="Select starting year..." />
       <ComboBox fx:id="endingyearComb" layoutX="291.0" layoutY="229.0" onAction="#Select5" prefWidth="150.0" promptText="Select ending year..." />
+      <ComboBox fx:id="charttypeComb" layoutX="193.0" layoutY="289.0" onAction="#Select6" prefWidth="150.0" promptText="Select chart type..." />
    </children>
 </AnchorPane>
