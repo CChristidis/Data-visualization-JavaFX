@@ -59,41 +59,41 @@ public class Controller implements Initializable {
    
 
 	@FXML
-	void Select1(ActionEvent event) {
+	public void Select1(ActionEvent event) {
 		String s = countryComb.getSelectionModel().getSelectedItem().toString();
 		selected_countries.add(s);
 	}
 	
 	@FXML
-	void Select2(ActionEvent event) {
+	public void Select2(ActionEvent event) {
 		String s = indicatorComb.getSelectionModel().getSelectedItem().toString();
 		selected_indicators.add(s);
 	}
 	
 	@FXML
-	void Select3(ActionEvent event) {
+	public void Select3(ActionEvent event) {
 		yearformat = yearformatComb.getSelectionModel().getSelectedItem().toString();
 	}
 
 	@FXML
-	void Select4(ActionEvent event) {
+	public void Select4(ActionEvent event) {
 		startingyear = startingyearComb.getSelectionModel().getSelectedItem().toString();
 	}
 
 	@FXML
-	void Select5(ActionEvent event) {
+	public void Select5(ActionEvent event) {
 		endingyear = endingyearComb.getSelectionModel().getSelectedItem().toString();
 	}
 	
 	@FXML
-    void Select6(ActionEvent event) {
+     	public void Select6(ActionEvent event) {
 		typeOfChart = charttypeComb.getSelectionModel().getSelectedItem().toString();
-    }
+    	}
 	
 	
 	
 	@FXML
-	void Submit(ActionEvent event) throws IOException {  
+	public void Submit(ActionEvent event) throws IOException {  
 		// actions that succeed after pressing the submit button.
 		closeWindow(event);
 		
@@ -126,7 +126,7 @@ public class Controller implements Initializable {
 		
 	}
 	
-	 String getResourcePath(String typeOfChart) {
+	 public String getResourcePath(String typeOfChart) {
 		 String fxmlResourcePath = "";
 		 
 		 if (typeOfChart.equalsIgnoreCase("bar")) 
@@ -143,7 +143,7 @@ public class Controller implements Initializable {
 	 }
 	
 	
-	void closeWindow(ActionEvent event) {
+	public void closeWindow(ActionEvent event) {
 		Node source = (Node) event.getSource();
 		Stage stage = (Stage) source.getScene().getWindow();
 	    stage.close();
@@ -208,11 +208,4 @@ public class Controller implements Initializable {
 	public void setSelected_indicators(List<String> selected_indicators) {
 		this.selected_indicators = selected_indicators;
 	}
-
-
-	
-	
-	
-	
-
 }
