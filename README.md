@@ -6,9 +6,3 @@
 Dpt. of Computer Science and Engineering, University of Ioannina,
 2022.
 
-
-
-TODO:
-* .jpg with db's ER schema.
-
-
