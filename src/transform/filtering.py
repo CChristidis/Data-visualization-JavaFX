@@ -56,11 +56,15 @@ def unpivot_df(df):
 
     return df
 
-
-if __name__ == "__main__":
+def main():
     df = filter_indicators(in_file)
     df = add_countryid_indicatorid(df)
     df = unpivot_df(df)
 
     df.to_csv(out_file, index=False)  # index=False removes index column.
+    
+
+if __name__ == "__main__":
+    main()
+    
 
