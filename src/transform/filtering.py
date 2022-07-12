@@ -1,3 +1,6 @@
+# Script used for data cleansing and data integration.
+
+
 import pandas as pd
 import numpy
 
